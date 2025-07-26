@@ -174,3 +174,4 @@ ALTER TABLE ONLY public.task
 --
 -- PostgreSQL database dump complete
 --
+
