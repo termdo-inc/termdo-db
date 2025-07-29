@@ -63,7 +63,7 @@ ALTER SEQUENCE public.account_account_id_seq OWNED BY public.account.account_id;
 CREATE TABLE public.task (
     task_id integer NOT NULL,
     account_id integer NOT NULL,
-    name character varying(64) NOT NULL,
+    title character varying(64) NOT NULL,
     description character varying(1024),
     is_completed boolean DEFAULT false NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
@@ -121,7 +121,7 @@ COPY public.account (account_id, username, password) FROM stdin;
 -- Data for Name: task; Type: TABLE DATA; Schema: public; Owner: termdo_admin
 --
 
-COPY public.task (task_id, account_id, name, description, is_completed, created_at, updated_at) FROM stdin;
+COPY public.task (task_id, account_id, title, description, is_completed, created_at, updated_at) FROM stdin;
 \.
 
 
