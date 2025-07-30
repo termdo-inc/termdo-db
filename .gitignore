@@ -1,2 +1,24 @@
-data
-.env
+*
+
+# Git files
+!.gitignore
+
+# Repo files
+!LICENSE.md
+!README.md
+
+# Schema files
+!schema/
+!schema/**
+
+# Script files
+!scripts/
+!scripts/**
+
+# Config files
+!.editorconfig
+
+# Docker files
+!.dockerignore
+!compose.yaml
+!Dockerfile
