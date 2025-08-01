@@ -1,24 +1,28 @@
 *
 
-# Git files
+# >-----< INCLUDES >-----< #
+
+# [+]: Git files
 !.gitignore
 
-# Repo files
+# [+]: Repo files
 !LICENSE.md
 !README.md
 
-# Schema files
+# [+]: Schema files
 !schema/
 !schema/**
 
-# Script files
+# [+]: Script files
 !scripts/
 !scripts/**
 
-# Config files
+# [+]: Config files
 !.editorconfig
 
-# Docker files
+# [+]: Docker files
 !.dockerignore
 !compose.yaml
 !Dockerfile
+
+# >-----< EXCLUDES >-----< #
