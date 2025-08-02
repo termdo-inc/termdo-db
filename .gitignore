@@ -26,3 +26,7 @@
 !Dockerfile
 
 # >-----< EXCLUDES >-----< #
+
+# [-]: macOS files
+.DS_Store
+**/.DS_Store
