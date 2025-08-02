@@ -2,7 +2,7 @@ name: termdo
 
 services:
   db:
-    build: Dockerfile
+    build: .
     restart: unless-stopped
     container_name: termdo-db
     environment:
