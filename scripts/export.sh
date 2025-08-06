@@ -40,8 +40,8 @@ for arg in "$@"; do
   esac
 done
 
-echo "⏳ Exporting database '$POSTGRES_DB' to $SQL_FILE..."
+echo "⏳ Exporting database '$DB_NAME' to $SQL_FILE..."
 
-sudo docker exec termdo-db pg_dump --username="$POSTGRES_USER" --dbname="$POSTGRES_DB" > "$SQL_FILE"
+sudo docker exec termdo-db pg_dump --username="$DB_USER" --dbname="$DB_NAME" > "$SQL_FILE"
 
 echo "✅ Export completed."
