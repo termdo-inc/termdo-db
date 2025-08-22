@@ -65,7 +65,7 @@ CREATE TABLE public.task (
     account_id integer NOT NULL,
     title character varying(64) NOT NULL,
     description character varying(1024),
-    is_completed boolean DEFAULT false NOT NULL,
+    is_completed boolean NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
