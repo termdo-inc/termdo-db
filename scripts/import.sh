@@ -40,8 +40,8 @@ for arg in "$@"; do
   esac
 done
 
-echo "⏳ Importing $SQL_FILE into database '$DB_NAME'..."
+echo "⏳ Importing $SQL_FILE into database '$POSTGRES_NAME'..."
 
-cat "$SQL_FILE" | sudo docker exec -i termdo-db psql --username="$DB_USER" --dbname="$DB_NAME"
+cat "$SQL_FILE" | sudo docker exec -i termdo-db psql --username="$POSTGRES_USER" --dbname="$POSTGRES_NAME"
 
 echo "✅ Import completed."
