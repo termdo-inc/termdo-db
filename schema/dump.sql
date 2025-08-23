@@ -2,8 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.5 (Debian 17.5-1.pgdg120+1)
--- Dumped by pg_dump version 17.5 (Debian 17.5-1.pgdg120+1)
+\restrict OcPacxxud8mOkEDJVbz8jTGKk6lfJuaraTPeDLk8eZ33Am0eMPakK1LdECDXlX7
+
+-- Dumped from database version 17.6
+-- Dumped by pg_dump version 17.6
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -114,6 +116,7 @@ ALTER TABLE ONLY public.task ALTER COLUMN task_id SET DEFAULT nextval('public.ta
 --
 
 COPY public.account (account_id, username, password) FROM stdin;
+1	emrecan	$2b$10$M/LqqucJbRgwq1ZxApbc8.UvCpg4.55f6ab0wjvrh4Ihmwss69XNW
 \.
 
 
@@ -122,6 +125,16 @@ COPY public.account (account_id, username, password) FROM stdin;
 --
 
 COPY public.task (task_id, account_id, title, description, is_completed, created_at, updated_at) FROM stdin;
+1	1	Study Math Tomorrow	Midterm will be tough, i should be prepared	t	2025-08-22 22:57:55.298789+00	2025-08-22 22:57:55.298789+00
+3	1	Another Task	This task is about me getting ready for the wedding of my aunt. I should wear my suit I bought from Altinyildiz	f	2025-08-23 12:09:19.545189+00	2025-08-23 12:09:19.545189+00
+5	1	Migrate CI	move to GitHub Actions	t	2025-08-23 12:13:09.063302+00	2025-08-23 12:13:09.063302+00
+6	1	Meet Bob at 10:30	Room A — bring slides	f	2025-08-23 12:13:18.557197+00	2025-08-23 12:13:18.557197+00
+7	1	Fix CORS	add headers in gateway	t	2025-08-23 12:13:23.260587+00	2025-08-23 12:13:23.260587+00
+8	1	Add analytics	privacy-safe only	t	2025-08-23 12:13:27.409459+00	2025-08-23 12:13:27.409459+00
+9	1	Write tests	coverage for tasks provider	f	2025-08-23 12:13:32.339608+00	2025-08-23 12:13:32.339608+00
+10	1	Clean workspace	remove dead branches	f	2025-08-23 12:13:37.945129+00	2025-08-23 12:13:37.945129+00
+11	1	Review PR #42	check failing test: tasks_spec	t	2025-08-23 12:14:09.243179+00	2025-08-23 12:33:22.091552+00
+4	1	Buy Pencil	Get a Rotring pen with matching leads.	f	2025-08-23 12:12:23.878501+00	2025-08-23 12:34:20.927348+00
 \.
 
 
@@ -129,14 +142,14 @@ COPY public.task (task_id, account_id, title, description, is_completed, created
 -- Name: account_account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: termdo_admin
 --
 
-SELECT pg_catalog.setval('public.account_account_id_seq', 1, false);
+SELECT pg_catalog.setval('public.account_account_id_seq', 1, true);
 
 
 --
 -- Name: task_task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: termdo_admin
 --
 
-SELECT pg_catalog.setval('public.task_task_id_seq', 1, false);
+SELECT pg_catalog.setval('public.task_task_id_seq', 11, true);
 
 
 --
@@ -174,3 +187,6 @@ ALTER TABLE ONLY public.task
 --
 -- PostgreSQL database dump complete
 --
+
+\unrestrict OcPacxxud8mOkEDJVbz8jTGKk6lfJuaraTPeDLk8eZ33Am0eMPakK1LdECDXlX7
+
