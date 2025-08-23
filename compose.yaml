@@ -5,10 +5,6 @@ services:
     build: .
     restart: unless-stopped
     container_name: termdo-db
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./data/:/var/lib/postgresql/data/
     env_file: .env
