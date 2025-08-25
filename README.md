@@ -31,9 +31,9 @@ This repo supports these services:
 
 ### Environment Variables
 
-- `DB_USER`: Database user
-- `DB_PASSWORD`: Database password
-- `DB_NAME`: Database name
+- `POSTGRES_USER`: Database user
+- `POSTGRES_PASSWORD`: Database password
+- `POSTGRES_DB`: Database name
 
 Create a `.env` file from `.env.example` and fill values. The Compose service passes these into the Postgres container.
 
@@ -55,9 +55,9 @@ Note: The Compose file does not expose the Postgres port to the host. Other serv
 
 When running other services on the same `termdo-net` network:
 
-- `DB_HOST=termdo-db` (container name) or `DB_HOST=db` (compose service name, if part of the same compose project)
-- `DB_PORT=5432`
-- `DB_USER`, `DB_PASSWORD`, `DB_NAME` as defined in this repo’s `.env`
+- `POSTGRES_HOST=termdo-db` (container name) or `POSTGRES_HOST=db` (compose service name, if part of the same compose project)
+- `POSTGRES_PORT=5432`
+- `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` as defined in this repo’s `.env`
 
 Example `.env` for termdo-auth-api or termdo-tasks-api when sharing `termdo-net`:
 
