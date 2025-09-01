@@ -142,7 +142,7 @@ Note: If you see permission errors, ensure the container is running and your use
 ## Integration Notes
 
 - Start this DB first, then start `termdo-auth-api` and `termdo-tasks-api` so they can connect.
-- If running in Docker compose, all services should join the same `termdo-net` network (Compose files already do this).
+- All services should join the same `termdo-net` network (Compose files already do this).
 
 ## License
 
