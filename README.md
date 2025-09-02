@@ -147,7 +147,3 @@ Note: If you see permission errors, ensure the container is running and your use
 ## License
 
 MIT — see `LICENSE.md`.
-
-```sh
-test
-```
