@@ -187,6 +187,3 @@ ALTER TABLE ONLY public.task
 --
 -- PostgreSQL database dump complete
 --
-
-\unrestrict OcPacxxud8mOkEDJVbz8jTGKk6lfJuaraTPeDLk8eZ33Am0eMPakK1LdECDXlX7
-
