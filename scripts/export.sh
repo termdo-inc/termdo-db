@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-source .env
-
 # Default output file
 SQL_FILE="schema/dump.sql"
 
@@ -40,8 +38,30 @@ for arg in "$@"; do
   esac
 done
 
-echo "⏳ Exporting database '$POSTGRES_DB' to $SQL_FILE..."
+# Ask for connection details
+read -p "Enter database host [localhost]: " DB_HOST
+DB_HOST=${DB_HOST:-localhost}
 
-sudo docker exec termdo-db pg_dump --username="$POSTGRES_USER" --dbname="$POSTGRES_DB" > "$SQL_FILE"
+read -p "Enter database port [5432]: " DB_PORT
+DB_PORT=${DB_PORT:-5432}
+
+read -p "Enter database name [postgres]: " DB_NAME
+DB_NAME=${DB_NAME:-postgres}
+
+read -s -p "Enter password: " DB_PASS
+echo
+
+read -p "Enter username [postgres]: " DB_USER
+DB_USER=${DB_USER:-postgres}
+
+echo "⏳ Exporting database '$DB_NAME' from $DB_HOST:$DB_PORT as user '$DB_USER' to $SQL_FILE..."
+
+# Use PGPASSWORD for authentication
+PGPASSWORD="$DB_PASS" pg_dump \
+  --host="$DB_HOST" \
+  --port="$DB_PORT" \
+  --username="$DB_USER" \
+  --dbname="$DB_NAME" \
+  > "$SQL_FILE"
 
 echo "✅ Export completed."

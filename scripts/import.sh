@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-source .env
-
 # Default SQL file
 SQL_FILE="schema/dump.sql"
 
@@ -40,8 +38,29 @@ for arg in "$@"; do
   esac
 done
 
-echo "⏳ Importing $SQL_FILE into database '$POSTGRES_DB'..."
+# Ask for connection details
+read -p "Enter database host [localhost]: " DB_HOST
+DB_HOST=${DB_HOST:-localhost}
 
-cat "$SQL_FILE" | sudo docker exec -i termdo-db psql --username="$POSTGRES_USER" --dbname="$POSTGRES_DB"
+read -p "Enter database port [5432]: " DB_PORT
+DB_PORT=${DB_PORT:-5432}
+
+read -p "Enter username [postgres]: " DB_USER
+DB_USER=${DB_USER:-postgres}
+
+read -s -p "Enter password: " DB_PASS
+echo
+
+read -p "Enter database name [postgres]: " DB_NAME
+DB_NAME=${DB_NAME:-postgres}
+
+echo "⏳ Importing $SQL_FILE into database '$DB_NAME' on $DB_HOST:$DB_PORT as user '$DB_USER'..."
+
+PGPASSWORD="$DB_PASS" psql \
+  --host="$DB_HOST" \
+  --port="$DB_PORT" \
+  --username="$DB_USER" \
+  --dbname="$DB_NAME" \
+  < "$SQL_FILE"
 
 echo "✅ Import completed."
