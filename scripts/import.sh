@@ -7,7 +7,7 @@ if [ -f .env ]; then
 fi
 
 # Default SQL file
-SQL_FILE="schema/dump.sql"
+SQL_FILE="schemas/dump.sql"
 
 show_help() {
   echo "Usage: $0 [--clean | --demo | --help]"
@@ -24,11 +24,11 @@ show_help() {
 for arg in "$@"; do
   case $arg in
     --clean)
-      SQL_FILE="schema/clean.sql"
+      SQL_FILE="schemas/clean.sql"
       shift
       ;;
     --demo)
-      SQL_FILE="schema/demo.sql"
+      SQL_FILE="schemas/demo.sql"
       shift
       ;;
     --help)

@@ -11,8 +11,8 @@
 !README.md
 
 # [+]: Schema files
-!schema/
-!schema/**
+!schemas/
+!schemas/**
 
 # [+]: Script files
 !scripts/
