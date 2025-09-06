@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Get env variables from .env file if it exists
+if [ -f .env ]; then
+  source .env
+fi
+
 # Default output file
 SQL_FILE="schema/dump.sql"
 
@@ -45,19 +50,31 @@ DB_HOST=${DB_HOST:-localhost}
 read -p "Enter database port [5432]: " DB_PORT
 DB_PORT=${DB_PORT:-5432}
 
-read -p "Enter database name [postgres]: " DB_NAME
-DB_NAME=${DB_NAME:-postgres}
+if [ -n "$POSTGRES_USER" ]; then
+  DB_USER="$POSTGRES_USER"
+else
+  read -p "Enter username [postgres]: " DB_USER
+  DB_USER=${DB_USER:-postgres}
+fi
 
-read -s -p "Enter password: " DB_PASS
-echo
+if [ -n "$POSTGRES_PASSWORD" ]; then
+  DB_PASSWORD="$POSTGRES_PASSWORD"
+else
+  read -s -p "Enter password: " DB_PASSWORD
+  echo
+fi
 
-read -p "Enter username [postgres]: " DB_USER
-DB_USER=${DB_USER:-postgres}
+if [ -n "$POSTGRES_DB" ]; then
+  DB_NAME="$POSTGRES_DB"
+else
+  read -p "Enter database name [postgres]: " DB_NAME
+  DB_NAME=${DB_NAME:-postgres}
+fi
 
 echo "⏳ Exporting database '$DB_NAME' from $DB_HOST:$DB_PORT as user '$DB_USER' to $SQL_FILE..."
 
 # Use PGPASSWORD for authentication
-PGPASSWORD="$DB_PASS" pg_dump \
+PGPASSWORD="$DB_PASSWORD" pg_dump \
   --host="$DB_HOST" \
   --port="$DB_PORT" \
   --username="$DB_USER" \

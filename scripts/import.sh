@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Get env variables from .env file if it exists
+if [ -f .env ]; then
+  source .env
+fi
+
 # Default SQL file
 SQL_FILE="schema/dump.sql"
 
@@ -45,18 +50,30 @@ DB_HOST=${DB_HOST:-localhost}
 read -p "Enter database port [5432]: " DB_PORT
 DB_PORT=${DB_PORT:-5432}
 
-read -p "Enter username [postgres]: " DB_USER
-DB_USER=${DB_USER:-postgres}
+if [ -n "$POSTGRES_USER" ]; then
+  DB_USER="$POSTGRES_USER"
+else
+  read -p "Enter username [postgres]: " DB_USER
+  DB_USER=${DB_USER:-postgres}
+fi
 
-read -s -p "Enter password: " DB_PASS
-echo
+if [ -n "$POSTGRES_PASSWORD" ]; then
+  DB_PASSWORD="$POSTGRES_PASSWORD"
+else
+  read -s -p "Enter password: " DB_PASSWORD
+  echo
+fi
 
-read -p "Enter database name [postgres]: " DB_NAME
-DB_NAME=${DB_NAME:-postgres}
+if [ -n "$POSTGRES_DB" ]; then
+  DB_NAME="$POSTGRES_DB"
+else
+  read -p "Enter database name [postgres]: " DB_NAME
+  DB_NAME=${DB_NAME:-postgres}
+fi
 
 echo "⏳ Importing $SQL_FILE into database '$DB_NAME' on $DB_HOST:$DB_PORT as user '$DB_USER'..."
 
-PGPASSWORD="$DB_PASS" psql \
+PGPASSWORD="$DB_PASSWORD" psql \
   --host="$DB_HOST" \
   --port="$DB_PORT" \
   --username="$DB_USER" \
