@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Updated import/export scripts to handle remote operations.
+- Updated import/export scripts to handle remote migrations.
 
 ## [1.0.0] - 2025-08-24 - Initial release 🎉
 
